@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:n="urn:smartly:notification"><soap:Body><n:SendDecisionNoticeResponse><n:accepted>true</n:accepted><n:messageReference>MSG-7781</n:messageReference></n:SendDecisionNoticeResponse></soap:Body></soap:Envelope>

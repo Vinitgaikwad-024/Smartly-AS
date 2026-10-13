@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:n="urn:smartly:notification" xmlns:a="urn:smartly:auth"><soap:Header><a:Credentials><a:clientId>smartly-demo</a:clientId><a:clientSecret>REPLACE_WITH_TEST_SECRET</a:clientSecret></a:Credentials></soap:Header><soap:Body><n:SendDecisionNoticeRequest><n:bookingReference>BK-1001</n:bookingReference><n:recipientEmail>student@example.edu</n:recipientEmail><n:decision>approved</n:decision></n:SendDecisionNoticeRequest></soap:Body></soap:Envelope>

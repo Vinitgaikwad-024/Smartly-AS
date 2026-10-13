@@ -1,0 +1,115 @@
+openapi: 3.0.3
+info: {title: Smartly Access Flow API, version: 1.0.0}
+servers: [{url: http://127.0.0.1:5000}]
+paths:
+  /health:
+    get:
+      responses: {'200': {description: healthy}}
+  /rooms:
+    get:
+      parameters:
+        - {in: query, name: building, schema: {type: string}}
+        - {in: query, name: type, schema: {type: string}}
+        - {in: query, name: minCapacity, schema: {type: integer, minimum: 1}}
+        - {in: query, name: page, schema: {type: integer, minimum: 1}}
+        - {in: query, name: limit, schema: {type: integer, minimum: 1, maximum: 50}}
+      responses: {'200': {description: paginated rooms}}
+  /rooms/{room_id}:
+    get:
+      parameters:
+        - {$ref: '#/components/parameters/RoomId'}
+        - {in: header, name: If-None-Match, schema: {type: string}}
+      responses:
+        '200': {description: room with ETag}
+        '304': {description: unchanged}
+        '404': {$ref: '#/components/responses/Problem'}
+  /bookings:
+    get:
+      security: [{BearerAuth: []}]
+      responses: {'200': {description: bookings}}
+    post:
+      security: [{BearerAuth: []}]
+      parameters:
+        - {in: header, name: Idempotency-Key, schema: {type: string}}
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: {$ref: '#/components/schemas/BookingCreate'}
+      responses:
+        '201': {description: created, headers: {Location: {schema: {type: string}}}}
+        '401': {$ref: '#/components/responses/Problem'}
+        '409': {$ref: '#/components/responses/Problem'}
+        '415': {$ref: '#/components/responses/Problem'}
+        '422': {$ref: '#/components/responses/Problem'}
+  /bookings/{booking_id}:
+    get:
+      security: [{BearerAuth: []}]
+      parameters: [{$ref: '#/components/parameters/BookingId'}]
+      responses: {'200': {description: booking}, '404': {$ref: '#/components/responses/Problem'}}
+  /bookings/{booking_id}/cancel:
+    post:
+      security: [{BearerAuth: []}]
+      parameters: [{$ref: '#/components/parameters/BookingId'}]
+      responses: {'200': {description: cancelled}, '404': {$ref: '#/components/responses/Problem'}, '409': {$ref: '#/components/responses/Problem'}}
+  /bookings/{booking_id}/approve:
+    post:
+      security: [{BearerAuth: []}]
+      parameters: [{$ref: '#/components/parameters/BookingId'}]
+      responses: {'200': {description: approved}, '409': {$ref: '#/components/responses/Problem'}}
+  /bookings/{booking_id}/reject:
+    post:
+      security: [{BearerAuth: []}]
+      parameters: [{$ref: '#/components/parameters/BookingId'}]
+      responses: {'200': {description: rejected}, '409': {$ref: '#/components/responses/Problem'}}
+  /admin/rooms:
+    get:
+      security: [{BearerAuth: []}]
+      responses: {'200': {description: room inventory}}
+    post:
+      security: [{BearerAuth: []}]
+      responses: {'201': {description: room created}, '422': {$ref: '#/components/responses/Problem'}}
+  /admin/rooms/{room_id}:
+    patch:
+      security: [{BearerAuth: []}]
+      parameters:
+        - {$ref: '#/components/parameters/RoomId'}
+        - {in: header, name: If-Match, schema: {type: string}}
+      responses: {'200': {description: updated}, '412': {$ref: '#/components/responses/Problem'}}
+    delete:
+      security: [{BearerAuth: []}]
+      parameters: [{$ref: '#/components/parameters/RoomId'}]
+      responses: {'204': {description: deleted}, '404': {$ref: '#/components/responses/Problem'}}
+components:
+  securitySchemes:
+    BearerAuth: {type: http, scheme: bearer}
+  parameters:
+    RoomId: {in: path, name: room_id, required: true, schema: {type: integer, minimum: 1}}
+    BookingId: {in: path, name: booking_id, required: true, schema: {type: integer, minimum: 1}}
+  schemas:
+    BookingCreate:
+      type: object
+      required: [roomId, date, startTime, endTime, purpose]
+      properties:
+        roomId: {type: integer, minimum: 1}
+        date: {type: string, format: date}
+        startTime: {type: string}
+        endTime: {type: string}
+        purpose: {type: string, minLength: 1}
+    Problem:
+      type: object
+      required: [type, title, status, detail]
+      properties:
+        type: {type: string}
+        title: {type: string}
+        status: {type: integer}
+        detail: {type: string}
+        instance: {type: string}
+        code: {type: string}
+        errors: {type: array, items: {type: object, required: [field, reason], properties: {field: {type: string}, reason: {type: string}}}}
+  responses:
+    Problem:
+      description: Problem Details
+      content:
+        application/problem+json:
+          schema: {$ref: '#/components/schemas/Problem'}

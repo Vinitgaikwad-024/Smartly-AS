@@ -1,0 +1,187 @@
+
+===== GET /posts/1 =====
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   292  100   292    0     0    680      0 --:--:-- --:--:-- --:--:--   680
+HTTP/2 200 
+date: Tue, 13 Oct 2026 16:41:02 GMT
+content-type: application/json; charset=utf-8
+content-length: 292
+access-control-allow-credentials: true
+cache-control: max-age=43200
+etag: W/"124-yiKdLzqO5gfBrJFrcdJ8Yq0LGnU"
+expires: -1
+pragma: no-cache
+vary: Origin, Accept-Encoding
+x-content-type-options: nosniff
+x-powered-by: Express
+x-ratelimit-limit: 3600000
+x-ratelimit-remaining: 3599999
+x-ratelimit-reset: 1790812826
+age: 24314
+accept-ranges: bytes
+cf-cache-status: HIT
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=5ZYwEsSHKhJlOOSlwGXN9oVfmH%2FwrgVPkID8yDee3RyRdZoPcZSOiyOztrgBIYMEpjAtMh5Y1gcaRrVG3mBaBoa17yntT9R28MpyZb%2FtO%2FC1F5yAjDfDWHM4Ox0ime7LRmwtWzArrgdKly5bnn%2FFAaBskDL%2Bz5cOQcKt"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a49fca1dcd2ee185-MRS
+alt-svc: h3=":443"; ma=86400
+
+{
+  "userId": 1,
+  "id": 1,
+  "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+  "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+}
+
+===== GET /users/1 =====
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   509  100   509    0     0    735      0 --:--:-- --:--:-- --:--:--   735100   509  100   509    0     0    735      0 --:--:-- --:--:-- --:--:--   734
+HTTP/2 200 
+date: Tue, 13 Oct 2026 16:41:02 GMT
+content-type: application/json; charset=utf-8
+content-length: 509
+access-control-allow-credentials: true
+cache-control: max-age=43200
+etag: W/"1fd-+2Y3G3w049iSZtw5t1mzSnunngE"
+expires: -1
+pragma: no-cache
+vary: Origin, Accept-Encoding
+x-content-type-options: nosniff
+x-powered-by: Express
+x-ratelimit-limit: 3600000
+x-ratelimit-remaining: 3599999
+x-ratelimit-reset: 1790812826
+age: 5851
+accept-ranges: bytes
+cf-cache-status: HIT
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=9utpQot%2FUKZLeT9BQS%2FLWx83GY0O9vJvwGwm9nnWCrinqpiKuENgYjuYpmyDt%2Fy%2FDj1uWSq1BNLgzcoyR1MLN6fInW%2BkmC85kFzagghEpqI8jetAmB8mJA82w91CjPHNfi4EuR%2Bss7Rl8g8e9UdUr5f910Y8f0P3m9gg"}]}
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+server: cloudflare
+cf-ray: a49fca213fced10c-CDG
+alt-svc: h3=":443"; ma=86400
+
+{
+  "id": 1,
+  "name": "Leanne Graham",
+  "username": "Bret",
+  "email": "Sincere@april.biz",
+  "address": {
+    "street": "Kulas Light",
+    "suite": "Apt. 556",
+    "city": "Gwenborough",
+    "zipcode": "92998-3874",
+    "geo": {
+      "lat": "-37.3159",
+      "lng": "81.1496"
+    }
+  },
+  "phone": "1-770-736-8031 x56442",
+  "website": "hildegard.org",
+  "company": {
+    "name": "Romaguera-Crona",
+    "catchPhrase": "Multi-layered client-server neural-net",
+    "bs": "harness real-time e-markets"
+  }
+}
+
+===== GET /comments/1 =====
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100   268  100   268    0     0    276      0 --:--:-- --:--:-- --:--:--   276100   268  100   268    0     0    276      0 --:--:-- --:--:-- --:--:--   276
+HTTP/2 200 
+date: Tue, 13 Oct 2026 16:41:03 GMT
+content-type: application/json; charset=utf-8
+content-length: 268
+access-control-allow-credentials: true
+cache-control: max-age=43200
+etag: W/"10c-KJ4I9RM/+33TKdV8CFsIvqsDSP0"
+expires: -1
+pragma: no-cache
+vary: Origin, Accept-Encoding
+x-content-type-options: nosniff
+x-powered-by: Express
+x-ratelimit-limit: 3600000
+x-ratelimit-remaining: 3599980
+x-ratelimit-reset: 1790812826
+accept-ranges: bytes
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+age: 5677
+cf-cache-status: HIT
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=e3oRK9dCUpFn3m8U0xvM5AjBaJMd%2FrmPMFXMvoPi1p%2BePfRiKEodXQb64rtFo6dC2Rnhgg%2FqUBm8wpojhWR4T%2FVedovrNvXPU8SPU0Th58G%2FuP2fKtdDgXeYT9jUSRjYiGPB0n%2F%2BmRh%2BwsxdZygL"}]}
+server: cloudflare
+cf-ray: a49fca258c519e9b-CDG
+alt-svc: h3=":443"; ma=86400
+
+{
+  "postId": 1,
+  "id": 1,
+  "name": "id labore ex et quam laborum",
+  "email": "Eliseo@gardner.biz",
+  "body": "laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium"
+}
+
+===== GET /todos/1 =====
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100    83  100    83    0     0    137      0 --:--:-- --:--:-- --:--:--   138
+HTTP/2 200 
+date: Tue, 13 Oct 2026 16:41:04 GMT
+content-type: application/json; charset=utf-8
+content-length: 83
+access-control-allow-credentials: true
+cache-control: max-age=43200
+etag: W/"53-hfEnumeNh6YirfjyjaujcOPPT+s"
+expires: -1
+pragma: no-cache
+vary: Origin, Accept-Encoding
+x-content-type-options: nosniff
+x-powered-by: Express
+x-ratelimit-limit: 3600000
+x-ratelimit-remaining: 3599999
+x-ratelimit-reset: 1790812826
+age: 7
+accept-ranges: bytes
+cf-cache-status: HIT
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=PqqzKnKhuneEXVkVTr%2Fq7QVIH3Yt%2Fa2BaQ%2BZegOI%2F4qkWeqSf%2F8Ie2wM6C9GEwc5lq4I3Dg01KLOQ7HBUNQnuPmwgwKRJVCuFMPnJJOysth6KPRYo%2BbDIxZBYPWsLW9S%2Fds7XBgfzi4P%2FXVg8Tzu"}]}
+server: cloudflare
+cf-ray: a49fca2ba9f9f160-CDG
+alt-svc: h3=":443"; ma=86400
+
+{
+  "userId": 1,
+  "id": 1,
+  "title": "delectus aut autem",
+  "completed": false
+}
+
+===== GET /invalid-endpoint =====
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0100     2  100     2    0     0      3      0 --:--:-- --:--:-- --:--:--     3
+HTTP/2 404 
+date: Tue, 13 Oct 2026 16:41:05 GMT
+content-type: application/json; charset=utf-8
+content-length: 2
+access-control-allow-credentials: true
+cache-control: max-age=43200
+etag: W/"2-vyGp6PvFo4RvsFtPoIWeCReyIC8"
+expires: -1
+pragma: no-cache
+vary: Origin, Accept-Encoding
+x-content-type-options: nosniff
+x-powered-by: Express
+x-ratelimit-limit: 3600000
+x-ratelimit-remaining: 3599999
+x-ratelimit-reset: 1791906595
+nel: {"report_to":"cf-nel","success_fraction":0.0,"max_age":604800}
+age: 4545
+cf-cache-status: HIT
+report-to: {"group":"cf-nel","max_age":604800,"endpoints":[{"url":"https://a.nel.cloudflare.com/report/v4?s=B03DppQfLP0a0Ovaw7J1EfS2%2FEUv46wXs5j3bghe1kUSzx8sJBqqAGzZAotBqV3kWudgZxd%2FfinhnJwrDTRY7Bo6IGqSjG74ahANTh0FUwdH2Vj8LA1It9osBXEuPZX%2BAczbDUDjp9VZ1w%2FlqP0tbvX0DZ9rV99UrkeH"}]}
+server: cloudflare
+cf-ray: a49fca2fcdb62fa5-CDG
+alt-svc: h3=":443"; ma=86400
+
+{}

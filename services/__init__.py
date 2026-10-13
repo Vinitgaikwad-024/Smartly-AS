@@ -1,0 +1,1 @@
+"""Smartly service adapters."""

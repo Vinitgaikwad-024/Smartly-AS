@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:smartly:notification" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="urn:smartly:notification" name="NotificationService">
+<types><xsd:schema targetNamespace="urn:smartly:notification" elementFormDefault="qualified">
+<xsd:element name="SendDecisionNoticeRequest"><xsd:complexType><xsd:sequence><xsd:element name="bookingReference" type="xsd:string"/><xsd:element name="recipientEmail" type="xsd:string"/><xsd:element name="decision" type="xsd:string"/></xsd:sequence></xsd:complexType></xsd:element>
+<xsd:element name="SendDecisionNoticeResponse"><xsd:complexType><xsd:sequence><xsd:element name="accepted" type="xsd:boolean"/><xsd:element name="messageReference" type="xsd:string" minOccurs="0"/></xsd:sequence></xsd:complexType></xsd:element>
+</xsd:schema></types>
+<message name="Input"><part name="parameters" element="tns:SendDecisionNoticeRequest"/></message><message name="Output"><part name="parameters" element="tns:SendDecisionNoticeResponse"/></message>
+<portType name="NotificationPortType"><operation name="SendDecisionNotice"><input message="tns:Input"/><output message="tns:Output"/></operation></portType>
+<binding name="NotificationSoapBinding" type="tns:NotificationPortType"><soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/><operation name="SendDecisionNotice"><soap:operation soapAction="urn:smartly:notification:SendDecisionNotice"/><input><soap:body use="literal"/></input><output><soap:body use="literal"/></output></operation></binding>
+<service name="NotificationService"><port name="NotificationSoapPort" binding="tns:NotificationSoapBinding"><soap:address location="https://partner.example.edu/soap/NotificationService"/></port></service>
+</definitions>

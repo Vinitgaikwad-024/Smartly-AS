@@ -1,0 +1,172 @@
+
+
+================================================================
+A1: health endpoint — expect 200
+================================================================
+$ curl -i http://127.0.0.1:5000/health
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143009
+
+
+
+
+================================================================
+A1: list rooms — expect 200
+================================================================
+$ curl -i http://127.0.0.1:5000/rooms
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143023
+
+
+
+
+================================================================
+A1: known room — expect 200 with ETag
+================================================================
+$ curl -i http://127.0.0.1:5000/rooms/1
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143037
+
+
+
+
+================================================================
+A1/A6: XML content negotiation — expect XML
+================================================================
+$ curl -i -H Accept:\ application/xml http://127.0.0.1:5000/health
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143051
+
+
+
+
+================================================================
+A1/A6: unknown room — expect 404 Problem Details
+================================================================
+$ curl -i http://127.0.0.1:5000/rooms/999
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143063
+
+
+
+
+================================================================
+A5/A6: unsupported Accept — expect 406
+================================================================
+$ curl -i -H Accept:\ text/csv http://127.0.0.1:5000/health
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143075
+
+
+
+
+================================================================
+A5/A6: missing bearer token — expect 401
+================================================================
+$ curl -i -H Content-Type:\ application/json -d \{\} -X POST http://127.0.0.1:5000/bookings
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143087
+
+
+
+
+================================================================
+A4/A5/A6: create booking — expect 201 + Location
+================================================================
+$ curl -i -X POST http://127.0.0.1:5000/bookings -H Authorization:\ Bearer\ local-demo -H Content-Type:\ application/json -H Accept:\ application/json -H Idempotency-Key:\ smartly-transcript-001 -d \{\"roomId\":1\,\"date\":\"2026-11-01\"\,\"startTime\":\"10:00\"\,\"endTime\":\"11:00\"\,\"purpose\":\"CS543\ transcript\ test\"\}
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143099
+
+
+
+
+================================================================
+A5: replay same create request with same Idempotency-Key
+================================================================
+$ curl -i -X POST http://127.0.0.1:5000/bookings -H Authorization:\ Bearer\ local-demo -H Content-Type:\ application/json -H Accept:\ application/json -H Idempotency-Key:\ smartly-transcript-001 -d \{\"roomId\":1\,\"date\":\"2026-11-01\"\,\"startTime\":\"10:00\"\,\"endTime\":\"11:00\"\,\"purpose\":\"CS543\ transcript\ test\"\}
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143112
+
+
+
+
+================================================================
+A6: invalid booking fields — expect 422 Problem Details
+================================================================
+$ curl -i -X POST http://127.0.0.1:5000/bookings -H Authorization:\ Bearer\ local-demo -H Content-Type:\ application/json -d \{\"roomId\":\"bad\"\,\"date\":\"\"\,\"startTime\":\"12:00\"\,\"endTime\":\"10:00\"\,\"purpose\":\"\"\}
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143125
+
+
+
+
+================================================================
+A5/A6: conditional GET skipped — no ETag was returned by GET /rooms/1
+
+
+================================================================
+A5/A6: stale If-Match — expect 412 Problem Details
+================================================================
+$ curl -i -X PATCH http://127.0.0.1:5000/admin/rooms/1 -H Authorization:\ Bearer\ local-demo -H Content-Type:\ application/json -H If-Match:\ \"room-1-stale\" -d \{\"name\":\"Lab\ A\ renamed\ by\ stale\ update\"\}
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143149
+
+
+
+
+================================================================
+A5: OPTIONS preflight — expect 204 and Allow/CORS headers
+================================================================
+$ curl -i -X OPTIONS http://127.0.0.1:5000/bookings -H Origin:\ https://client.example.edu -H Access-Control-Request-Method:\ POST -H Access-Control-Request-Headers:\ authorization\,content-type\,idempotency-key
+
+HTTP/1.1 403 Forbidden
+Content-Length: 0
+Server: AirTunes/980.77.5
+X-Apple-ProcessingTime: 0
+X-Apple-RequestReceivedTimestamp: 169143161
+
+

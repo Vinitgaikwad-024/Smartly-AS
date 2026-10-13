@@ -1,0 +1,7 @@
+CREATE TABLE users (user_id INTEGER PRIMARY KEY, institutional_email VARCHAR(254) UNIQUE NOT NULL, full_name VARCHAR(120) NOT NULL, role VARCHAR(20) NOT NULL CHECK(role IN ('student','faculty','admin')));
+CREATE TABLE buildings (building_id INTEGER PRIMARY KEY, name VARCHAR(120) UNIQUE NOT NULL, campus VARCHAR(120) NOT NULL);
+CREATE TABLE rooms (room_id INTEGER PRIMARY KEY, building_id INTEGER NOT NULL REFERENCES buildings(building_id), room_name VARCHAR(120) NOT NULL, room_type VARCHAR(30) NOT NULL, capacity INTEGER NOT NULL CHECK(capacity>0), is_available BOOLEAN NOT NULL DEFAULT TRUE);
+CREATE TABLE resources (resource_id INTEGER PRIMARY KEY, room_id INTEGER NOT NULL REFERENCES rooms(room_id) ON DELETE CASCADE, resource_name VARCHAR(120) NOT NULL, quantity INTEGER NOT NULL DEFAULT 1 CHECK(quantity>=0));
+CREATE TABLE bookings (booking_id INTEGER PRIMARY KEY, room_id INTEGER NOT NULL REFERENCES rooms(room_id), student_id INTEGER NOT NULL REFERENCES users(user_id), purpose VARCHAR(500) NOT NULL, booking_date DATE NOT NULL, start_time TIME NOT NULL, end_time TIME NOT NULL, status VARCHAR(20) NOT NULL CHECK(status IN ('pending','approved','rejected','cancelled')), CHECK(end_time>start_time));
+CREATE TABLE booking_decisions (decision_id INTEGER PRIMARY KEY, booking_id INTEGER NOT NULL REFERENCES bookings(booking_id), faculty_id INTEGER NOT NULL REFERENCES users(user_id), decision VARCHAR(20) NOT NULL CHECK(decision IN ('approved','rejected')), comment VARCHAR(500));
+CREATE INDEX idx_bookings_room_date ON bookings(room_id,booking_date);
